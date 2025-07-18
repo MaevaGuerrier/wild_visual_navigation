@@ -55,12 +55,19 @@ This package implements the Wild Visual Navigation (WVN) system presented in Fre
 
 If you are also building up on the STEGO integration or using the pre-trained models for comparison, please cite:
 ```bibtex
-@INPROCEEDINGS{mattamala24wild, 
-  AUTHOR    = {Jonas Frey AND Matias Mattamala AND Libera Piotr AND Nived Chebrolu AND Cesar Cadena AND Georg Martius AND Marco Hutter AND Maurice Fallon}, 
-  TITLE     = {{Wild Visual Navigation: Fast Traversability Learning via Pre-Trained Models and Online Self-Supervision}}, 
-  BOOKTITLE = {under review for Autonomous Robots}, 
-  YEAR      = {2024}
-} 
+@article{mattamala25wild, 
+  title = {Wild Visual Navigation: Fast Traversability Learning via Pre-Trained Models and Online Self-Supervision},
+  author = {Mattamala, Matias and Frey, Jonas and Libera, Piotr and Chebrolu, Nived and Martius, Georg and Cadena, Cesar and Hutter, Marco and Fallon, Maurice},
+  date = {2025-07-18},
+  journal = {Autonomous Robots},
+  volume = {49},
+  number = {3},
+  pages = {19},
+  issn = {1573-7527},
+  doi = {10.1007/s10514-025-10202-x},
+  url = {https://doi.org/10.1007/s10514-025-10202-x},
+}
+
 ```
 
 If you are using the `elevation_mapping_cupy` integration:
