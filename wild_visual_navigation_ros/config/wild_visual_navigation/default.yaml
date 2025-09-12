@@ -8,9 +8,9 @@ base_frame: base
 footprint_frame: footprint
 
 # Robot size used to project the footprint
-robot_length: 0.8
-robot_width: 0.3
-robot_height: 0.3
+robot_length: 0.7
+robot_width: 0.6
+robot_height: 0.7
 
 
 # Traversability estimation parameters
@@ -36,7 +36,7 @@ mission_name: "test"                # Name of the mission_folder used for loggin
 mission_timestamp: True             # If true current timestamp is used as a prefix for the mission_folder
 
 # Threads
-image_callback_rate: 10             # Maximum rate at which images are processed in hertz
+image_callback_rate: 30             # Maximum rate at which images are processed in hertz
 supervision_callback_rate: 10       # Maximum rate at which supervision_signals are processed in hertz
 learning_thread_rate: 10            # Gradient steps per second in hertz
 logging_thread_rate: 2              # Logging of learning_node in hertz
