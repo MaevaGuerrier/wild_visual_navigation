@@ -10,6 +10,8 @@ assets/stego/cocostuff27_vit_base_5.ckpt
 notebooks/**
 *.code-workspace
 
+.catkin_tools/*
+
 # DrawIO
 **.dtmp
 **.bkp 
