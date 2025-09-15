@@ -300,9 +300,6 @@ class WvnFeatureExtractor:
                 self._log_data[f"nr_images_{cam}"] += 1
                 self._log_data[f"time_last_image_{cam}"] = rospy.get_time()
 
-
-
-            print("BEFORE HEADER LOAD MODEL")
             # Update model from file if possible
             self.load_model(image_msg.header.stamp)
 
@@ -313,10 +310,6 @@ class WvnFeatureExtractor:
             
             # Before extracting the features, we resize the input images to a resolution
             # of 224 × 224. From https://arxiv.org/pdf/2404.07110
-            # Resize image
-            print(f"Image BEFORE resizing: {torch_image.shape}")
-
-            # Resize image torch_image
             torch_image = torch_image.unsqueeze(0)   # (1, 3, 224, 224)
             torch_image = F.interpolate(
                 torch_image, size=(224, 224), mode='bilinear', align_corners=False
@@ -324,9 +317,7 @@ class WvnFeatureExtractor:
             
             torch_image = torch_image.squeeze(0)  # (3, 224, 224)
             # Changed line placement due to resizing
-            C, H, W = torch_image.shape
-            print(f"Image shape after resizing: {torch_image.shape}")
-
+            _, H, W = torch_image.shape
             # Extract features
             _, feat, seg, center, dense_feat = self._feature_extractor.extract(
                 img=torch_image[None],
@@ -440,6 +431,8 @@ class WvnFeatureExtractor:
         p = join(WVN_ROOT_DIR, ".tmp_state_dict.pt")
         # p = join(WVN_ROOT_DIR,"assets/checkpoints/mountain_bike_trail_fpr_0.25.pt")
 
+
+        #print(f"LOAD MODEL PATH: {p}") # /usr/local/lib/python3.8/dist-packages/.tmp_state_dict.pt
         if os.path.exists(p):
             new_model_state_dict = torch.load(p)
             k = list(self._model.state_dict().keys())[-1]
