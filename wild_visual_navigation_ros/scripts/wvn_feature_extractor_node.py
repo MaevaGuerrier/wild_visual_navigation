@@ -310,12 +310,13 @@ class WvnFeatureExtractor:
             
             # Before extracting the features, we resize the input images to a resolution
             # of 224 × 224. From https://arxiv.org/pdf/2404.07110
-            torch_image = torch_image.unsqueeze(0)   # (1, 3, 224, 224)
-            torch_image = F.interpolate(
-                torch_image, size=(224, 224), mode='bilinear', align_corners=False
-            )
+            # torch_image = torch_image.unsqueeze(0)   # (1, 3, 224, 224)
+            # torch_image = F.interpolate(
+            #     torch_image, size=(224, 224), mode='bilinear', align_corners=False
+            # )
             
-            torch_image = torch_image.squeeze(0)  # (3, 224, 224)
+            # torch_image = torch_image.squeeze(0)  # (3, 224, 224)
+
             # Changed line placement due to resizing
             _, H, W = torch_image.shape
             # Extract features
@@ -432,7 +433,7 @@ class WvnFeatureExtractor:
         # p = join(WVN_ROOT_DIR,"assets/checkpoints/mountain_bike_trail_fpr_0.25.pt")
 
 
-        #print(f"LOAD MODEL PATH: {p}") # /usr/local/lib/python3.8/dist-packages/.tmp_state_dict.pt
+        # print(f"LOAD MODEL PATH: {p}") # /usr/local/lib/python3.8/dist-packages/.tmp_state_dict.pt
         if os.path.exists(p):
             new_model_state_dict = torch.load(p)
             k = list(self._model.state_dict().keys())[-1]

@@ -18,6 +18,7 @@ class ImageOverlayNode:
         self.image_pub_topic = rospy.get_param("~image_pub_topic")
 
         self._pub = rospy.Publisher(f"~{self.image_pub_topic}", Image, queue_size=1)
+        rospy.loginfo(f"Publishing overlayed images on topic: {self.image_pub_topic}")
         self._visualizer = LearningVisualizer()
 
         image_sub = message_filters.Subscriber(self.image_sub_topic, Image)
@@ -32,6 +33,8 @@ class ImageOverlayNode:
         ros_msg = rc.numpy_to_ros_image(img_out)
         ros_msg.header.stamp = image_msg.header.stamp
         self._pub.publish(ros_msg)
+        rospy.loginfo(f"Published overlayed image on topic: {self.image_pub_topic}")
+        rospy.loginfo(f"Detectron classification overlay image shape: {img_out.shape}")
 
 
 if __name__ == "__main__":
@@ -43,6 +46,7 @@ if __name__ == "__main__":
             nr = args[nr_index + 1]
         else:
             nr = "0"  # Handle case when no arg is set
+        rospy.loginfo(f"Starting ImageOverlayNode with nr {nr} -> wild_visual_navigation_visu_{nr}")
         rospy.init_node(f"wild_visual_navigation_visu_{nr}")
     except Exception:
         rospy.init_node("wild_visual_navigation_visu")
